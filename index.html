@@ -8,12 +8,12 @@
     <meta name="keywords" content="Kirthick Kanna, portfolio, computer science engineer, web developer, android developer, VSB College, Salem, Java, Python, JavaScript, student portfolio">
     <meta name="author" content="Kirthick Kanna">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#08090d" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
     <meta name="color-scheme" content="dark light">
     <meta name="format-detection" content="telephone=no">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()">
@@ -38,8 +38,12 @@
     <link rel="canonical" href="https://kirthickkanna.dev/">
     <link rel="alternate" type="application/rss+xml" title="Kirthick Kanna" href="https://kirthickkanna.dev/feed.xml">
 
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='70' font-size='62' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='800'%3EK%3C/text%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%236366f1'/%3E%3Ctext x='50' y='70' font-size='62' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='800'%3EK%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c3aed'/%3E%3Cstop offset='0.5' stop-color='%23f72585'/%3E%3Cstop offset='1' stop-color='%2306d6a0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='70' font-size='62' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='800'%3EK%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237c3aed'/%3E%3Ctext x='50' y='70' font-size='62' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='800'%3EK%3C/text%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
@@ -113,6 +117,9 @@
 <body>
     <a href="#main" class="skip-link">Skip to main content</a>
 
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
     <header class="header" id="header">
         <nav class="nav container" aria-label="Primary">
             <a href="#hero" class="nav__logo" aria-label="Kirthick Kanna — Home">
@@ -158,43 +165,57 @@
             </div>
 
             <div class="container hero__container">
-                <p class="hero__greeting reveal" style="--reveal-delay:.05s">
-                    <span class="hero__greeting-line" aria-hidden="true"></span>
-                    Hello there, I'm
-                </p>
-                <h1 class="hero__name reveal" id="hero-name" style="--reveal-delay:.15s">
-                    Kirthick <span class="hero__name-accent">Kanna</span>
-                </h1>
-                <h2 class="hero__title reveal" style="--reveal-delay:.25s">
-                    <span class="hero__title-prefix">I'm a </span>
-                    <span class="hero__title-text" id="typed-text" aria-live="polite">Computer Science Engineer</span>
-                    <span class="hero__title-cursor" aria-hidden="true">|</span>
-                </h2>
-                <p class="hero__description reveal" style="--reveal-delay:.35s">
-                    A 4th-year Computer Science Engineering student at VSB College, building modern web and Android applications with clean code and great user experiences.
-                </p>
-                <div class="hero__cta reveal" style="--reveal-delay:.45s">
-                    <a href="#projects" class="btn btn--primary">
-                        View My Work
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="#contact" class="btn btn--ghost">
-                        Get In Touch
-                    </a>
+                <div class="hero__content">
+                    <div class="hero__badge reveal" style="--reveal-delay:.0s">
+                        <span class="hero__badge-dot" aria-hidden="true"></span>
+                        Available for new projects
+                    </div>
+                    <p class="hero__greeting reveal" style="--reveal-delay:.05s">
+                        <span class="hero__greeting-line" aria-hidden="true"></span>
+                        Hello there, I'm
+                    </p>
+                    <h1 class="hero__name reveal" id="hero-name" style="--reveal-delay:.15s">
+                        Kirthick <span class="hero__name-accent">Kanna</span>
+                    </h1>
+                    <h2 class="hero__title reveal" style="--reveal-delay:.25s">
+                        <span class="hero__title-prefix">I'm a </span>
+                        <span class="hero__title-text" id="typed-text" aria-live="polite">Computer Science Engineer</span>
+                        <span class="hero__title-cursor" aria-hidden="true">|</span>
+                    </h2>
+                    <p class="hero__description reveal" style="--reveal-delay:.35s">
+                        A 4th-year Computer Science Engineering student at VSB College, building modern web and Android applications with clean code and great user experiences.
+                    </p>
+                    <div class="hero__cta reveal" style="--reveal-delay:.45s">
+                        <a href="#projects" class="btn btn--primary">
+                            View My Work
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                        </a>
+                        <a href="#contact" class="btn btn--ghost">
+                            Get In Touch
+                        </a>
+                    </div>
+
+                    <div class="hero__quickstats reveal" style="--reveal-delay:.55s">
+                        <div class="stat">
+                            <span class="stat__num">4+</span>
+                            <span class="stat__label">Projects Built</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__num">4<sup>th</sup></span>
+                            <span class="stat__label">Year CSE</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__num">20</span>
+                            <span class="stat__label">Years Young</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="hero__quickstats reveal" style="--reveal-delay:.55s">
-                    <div class="stat">
-                        <span class="stat__num">4+</span>
-                        <span class="stat__label">Projects Built</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat__num">4<sup>th</sup></span>
-                        <span class="stat__label">Year CSE</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat__num">20</span>
-                        <span class="stat__label">Years Young</span>
+                <div class="hero__visual reveal" style="--reveal-delay:.6s" aria-hidden="true">
+                    <div class="hero__portrait-wrap">
+                        <div class="hero__portrait-glow"></div>
+                        <div class="hero__portrait-ring"></div>
+                        <img class="hero__portrait" src="kirthick.jpg" alt="Portrait of Kirthick Kanna" width="420" height="420" loading="eager" decoding="async" fetchpriority="high">
                     </div>
                 </div>
             </div>
@@ -211,7 +232,7 @@
             <div class="container">
                 <header class="section__header">
                     <p class="section__eyebrow reveal">01 — About</p>
-                    <h2 class="section__title reveal" id="about-title">A little bit about me</h2>
+                    <h2 class="section__title reveal" id="about-title">A little bit <span class="section__title-grad">about me</span></h2>
                     <p class="section__subtitle reveal">Get to know the person behind the code</p>
                 </header>
 
@@ -271,7 +292,7 @@
             <div class="container">
                 <header class="section__header">
                     <p class="section__eyebrow reveal">02 — Skills</p>
-                    <h2 class="section__title reveal" id="skills-title">My toolkit</h2>
+                    <h2 class="section__title reveal" id="skills-title">My <span class="section__title-grad">toolkit</span></h2>
                     <p class="section__subtitle reveal">Languages, frameworks, and tools I use to bring ideas to life</p>
                 </header>
 
@@ -281,13 +302,16 @@
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                         </div>
                         <h3 class="skill-card__title">Languages</h3>
+                        <p class="skill-card__desc">Core languages I write every day.</p>
+                        <div class="skill-bars" role="list">
+                            <div class="skill-bar" role="listitem" style="--fill:90%"><span class="skill-bar__label"><span>Java</span><span>90%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                            <div class="skill-bar" role="listitem" style="--fill:85%"><span class="skill-bar__label"><span>Python</span><span>85%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                            <div class="skill-bar" role="listitem" style="--fill:82%"><span class="skill-bar__label"><span>JavaScript</span><span>82%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                            <div class="skill-bar" role="listitem" style="--fill:80%"><span class="skill-bar__label"><span>SQL</span><span>80%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                        </div>
                         <ul class="skill-tags" role="list">
-                            <li>Java</li>
-                            <li>Python</li>
-                            <li>JavaScript</li>
                             <li>HTML5</li>
                             <li>CSS3</li>
-                            <li>SQL</li>
                         </ul>
                     </article>
 
@@ -296,10 +320,14 @@
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                         </div>
                         <h3 class="skill-card__title">Web Development</h3>
+                        <p class="skill-card__desc">Shipping fast, accessible, modern web UIs.</p>
+                        <div class="skill-bars" role="list">
+                            <div class="skill-bar" role="listitem" style="--fill:88%"><span class="skill-bar__label"><span>HTML &amp; CSS</span><span>88%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                            <div class="skill-bar" role="listitem" style="--fill:82%"><span class="skill-bar__label"><span>JavaScript</span><span>82%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                            <div class="skill-bar" role="listitem" style="--fill:75%"><span class="skill-bar__label"><span>Responsive</span><span>75%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                        </div>
                         <ul class="skill-tags" role="list">
-                            <li>Responsive Design</li>
                             <li>REST APIs</li>
-                            <li>DOM &amp; ES6+</li>
                             <li>Accessibility</li>
                             <li>Performance</li>
                         </ul>
@@ -310,11 +338,15 @@
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                         </div>
                         <h3 class="skill-card__title">Mobile Development</h3>
+                        <p class="skill-card__desc">Native Android apps with clean architecture.</p>
+                        <div class="skill-bars" role="list">
+                            <div class="skill-bar" role="listitem" style="--fill:80%"><span class="skill-bar__label"><span>Android (Java)</span><span>80%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                            <div class="skill-bar" role="listitem" style="--fill:70%"><span class="skill-bar__label"><span>Kotlin</span><span>70%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                            <div class="skill-bar" role="listitem" style="--fill:72%"><span class="skill-bar__label"><span>Firebase</span><span>72%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                        </div>
                         <ul class="skill-tags" role="list">
-                            <li>Android Studio</li>
-                            <li>Java / Kotlin</li>
                             <li>Material Design</li>
-                            <li>Firebase</li>
+                            <li>Android Studio</li>
                         </ul>
                     </article>
 
@@ -323,13 +355,46 @@
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                         </div>
                         <h3 class="skill-card__title">Tools &amp; Platforms</h3>
+                        <p class="skill-card__desc">The kit behind my workflow.</p>
+                        <div class="skill-bars" role="list">
+                            <div class="skill-bar" role="listitem" style="--fill:88%"><span class="skill-bar__label"><span>Git &amp; GitHub</span><span>88%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                            <div class="skill-bar" role="listitem" style="--fill:85%"><span class="skill-bar__label"><span>VS Code</span><span>85%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                            <div class="skill-bar" role="listitem" style="--fill:72%"><span class="skill-bar__label"><span>Linux CLI</span><span>72%</span></span><div class="skill-bar__track"><div class="skill-bar__fill"></div></div></div>
+                        </div>
                         <ul class="skill-tags" role="list">
-                            <li>Git &amp; GitHub</li>
-                            <li>VS Code</li>
                             <li>MySQL</li>
-                            <li>Linux CLI</li>
                         </ul>
                     </article>
+                </div>
+
+                <div class="marquee reveal" aria-hidden="true">
+                    <span class="marquee__label">Daily Stack</span>
+                    <div class="marquee__track">
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Java</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Python</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>JavaScript</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>HTML5</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>CSS3</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>SQL</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Android</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Firebase</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Git</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>MySQL</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>VS Code</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Linux</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Java</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Python</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>JavaScript</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>HTML5</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>CSS3</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>SQL</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Android</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Firebase</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Git</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>MySQL</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>VS Code</span>
+                        <span class="marquee__item"><span class="marquee__item-dot"></span>Linux</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -338,7 +403,7 @@
             <div class="container">
                 <header class="section__header">
                     <p class="section__eyebrow reveal">03 — Projects</p>
-                    <h2 class="section__title reveal" id="projects-title">Featured work</h2>
+                    <h2 class="section__title reveal" id="projects-title">Featured <span class="section__title-grad">work</span></h2>
                     <p class="section__subtitle reveal">A selection of projects that showcase what I can build</p>
                 </header>
 
@@ -426,7 +491,7 @@
             <div class="container">
                 <header class="section__header">
                     <p class="section__eyebrow reveal">04 — Education</p>
-                    <h2 class="section__title reveal" id="education-title">Academic path</h2>
+                    <h2 class="section__title reveal" id="education-title">Academic <span class="section__title-grad">path</span></h2>
                     <p class="section__subtitle reveal">Where I've been learning and building</p>
                 </header>
 
@@ -455,12 +520,12 @@
             <div class="container">
                 <header class="section__header">
                     <p class="section__eyebrow reveal">05 — Contact</p>
-                    <h2 class="section__title reveal" id="contact-title">Let's build something together</h2>
+                    <h2 class="section__title reveal" id="contact-title">Let's <span class="section__title-grad">build something</span> together</h2>
                     <p class="section__subtitle reveal">Have a project, an idea, or just want to say hi? My inbox is open.</p>
                 </header>
 
                 <div class="contact__grid">
-                    <div class="contact__card reveal" style="--reveal-delay:.05s">
+                    <div class="contact__card contact__card--email reveal" style="--reveal-delay:.05s">
                         <div class="contact__icon" aria-hidden="true">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                         </div>
@@ -471,7 +536,7 @@
                         </div>
                     </div>
 
-                    <div class="contact__card reveal" style="--reveal-delay:.15s">
+                    <div class="contact__card contact__card--phone reveal" style="--reveal-delay:.15s">
                         <div class="contact__icon" aria-hidden="true">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                         </div>
@@ -482,7 +547,7 @@
                         </div>
                     </div>
 
-                    <div class="contact__card reveal" style="--reveal-delay:.25s">
+                    <div class="contact__card contact__card--loc reveal" style="--reveal-delay:.25s">
                         <div class="contact__icon" aria-hidden="true">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         </div>
@@ -507,7 +572,7 @@
     <footer class="footer">
         <div class="container footer__container">
             <div class="footer__brand">
-                <span class="footer__logo">Kirthick<span class="footer__dot">.</span></span>
+                <span class="footer__logo">Kirthick<span class="footer__dot" aria-hidden="true"></span></span>
                 <p class="footer__tagline">Crafted with care &amp; clean code.</p>
             </div>
             <nav class="footer__nav" aria-label="Footer">
@@ -531,6 +596,7 @@
         <style>
             .reveal { opacity: 1 !important; transform: none !important; }
             .hero__title-cursor { display: none; }
+            .skill-bar__fill { width: var(--fill, 0%) !important; }
         </style>
         <div style="padding:1rem;background:#fff3cd;color:#664d03;text-align:center;font-family:sans-serif;">
             For the best experience, please enable JavaScript. Content is still fully accessible below.

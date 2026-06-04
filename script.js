@@ -19,7 +19,7 @@
     function setTheme(theme) {
         root.setAttribute('data-theme', theme);
         const meta = document.querySelector('meta[name="theme-color"]:not([media])');
-        if (meta) meta.setAttribute('content', theme === 'light' ? '#fafafa' : '#0a0a0f');
+        if (meta) meta.setAttribute('content', theme === 'light' ? '#faf9f5' : '#08090d');
         try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) { /* storage unavailable */ }
     }
 
@@ -75,10 +75,19 @@
         });
     }
 
-    /* ---------- Header shadow on scroll ---------- */
+    /* ---------- Header shadow + scroll progress on scroll ---------- */
     const header = $('#header');
+    const scrollProgress = $('#scroll-progress');
     let lastScroll = 0;
     let ticking = false;
+
+    function updateScrollProgress() {
+        if (!scrollProgress) return;
+        const doc = document.documentElement;
+        const max = (doc.scrollHeight - doc.clientHeight) || 1;
+        const ratio = Math.min(1, Math.max(0, window.scrollY / max));
+        scrollProgress.style.transform = `scaleX(${ratio})`;
+    }
 
     function onScroll() {
         const y = window.scrollY;
@@ -89,6 +98,7 @@
 
         updateActiveLink();
         updateBackToTop();
+        updateScrollProgress();
         lastScroll = y;
         ticking = false;
     }
@@ -241,6 +251,43 @@
     /* ---------- Footer year ---------- */
     const yearEl = $('#year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+
+    /* ---------- Skill bar fill on reveal ---------- */
+    const skillBars = $$('.skill-bar');
+    if (skillBars.length) {
+        if ('IntersectionObserver' in window && !prefersReducedMotion) {
+            const barObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        barObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+            skillBars.forEach(bar => barObserver.observe(bar));
+        } else {
+            skillBars.forEach(bar => bar.classList.add('is-visible'));
+        }
+    }
+
+
+    /* ---------- Pointer-tracked card glow ---------- */
+    const glowCards = $$('.skill-card, .contact__card');
+    if (glowCards.length && !prefersReducedMotion && window.matchMedia('(hover: hover)').matches) {
+        glowCards.forEach(card => {
+            card.addEventListener('pointermove', (e) => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', ((e.clientX - r.left) / r.width  * 100) + '%');
+                card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
+            });
+            card.addEventListener('pointerleave', () => {
+                card.style.removeProperty('--mx');
+                card.style.removeProperty('--my');
+            });
+        });
+    }
+
 
     /* ---------- Initial calls ---------- */
     onScroll();
