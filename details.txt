@@ -1,0 +1,10 @@
+Name:kirthick kanna
+Age:20
+college:VSB college of Engineering and technical campus
+Branch:B.E
+department:computer science and Engineering
+year:4
+place:salem
+projects:calculator,portfolio website,libary management,student welfare android app
+Email:kirthickkanna19@gmail.com
+phno:9842701479
